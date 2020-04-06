@@ -194,6 +194,9 @@ class SurveyRuntimeHelper
         $this->makeLanguageChanger(); //  language changer can be used on any entry screen, so it must be set first
         extract($args);
 
+        // set tmpVars with global field for all EM done after
+        LimeExpressionManager::updateReplacementFields(getStandardsReplacementFields($this->aSurveyInfo));
+
         ///////////////////////////////////////////////////////////
         // 1: We check if token and/or captcha form shouls be shown
         if (!isset($_SESSION[$this->LEMsessid]['step'])) {
@@ -226,8 +229,6 @@ class SurveyRuntimeHelper
 
         Yii::app()->loadHelper('qanda');
         setNoAnswerMode($this->aSurveyInfo);
-        // set tmpVars with global field for all EM done after
-        LimeExpressionManager::updateReplacementFields(getStandardsReplacementFields($this->aSurveyInfo));
         //Iterate through the questions about to be displayed:
         $inputnames = array();
         $vpopup     = $fpopup = false;
