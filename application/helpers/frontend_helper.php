@@ -1893,6 +1893,9 @@ function display_first_page($thissurvey, $aSurveyInfo)
     LimeExpressionManager::StartProcessingPage();
     LimeExpressionManager::StartProcessingGroup(-1, false, $surveyid); // start on welcome page
 
+	// set tmpVars with global field for all EM done after
+	LimeExpressionManager::updateReplacementFields(getStandardsReplacementFields($aSurveyInfo));
+
     // WHY HERE ?????
     $_SESSION['survey_'.$surveyid]['LEMpostKey'] = mt_rand();
 
